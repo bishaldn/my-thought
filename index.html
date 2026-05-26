@@ -1,0 +1,205 @@
+# Fixed Surprise Love Page
+
+Save this as `index.html` and open it in your browser.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Surprise Page</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3, #ffb199);
+      background-size: 300% 300%;
+      animation: bgAnimation 8s ease infinite;
+      position: relative;
+    }
+
+    @keyframes bgAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      color: white;
+      font-size: 24px;
+      animation: float 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) scale(0.5);
+        opacity: 0;
+      }
+
+      50% {
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-100px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      color: white;
+      width: 90%;
+      max-width: 500px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    .surprise-btn {
+      background: white;
+      color: #ff4f81;
+    }
+
+    .yes-btn {
+      background: #28a745;
+      color: white;
+    }
+
+    .no-btn {
+      background: #dc3545;
+      color: white;
+      position: relative;
+    }
+
+    .love-text {
+      font-size: 40px;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.1);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="heart" style="left:10%; animation-delay:0s;">❤</div>
+  <div class="heart" style="left:30%; animation-delay:2s;">❤</div>
+  <div class="heart" style="left:50%; animation-delay:4s;">❤</div>
+  <div class="heart" style="left:70%; animation-delay:1s;">❤</div>
+  <div class="heart" style="left:90%; animation-delay:3s;">❤</div>
+
+  <div class="container" id="mainBox">
+    <h1>✨ Welcome ✨</h1>
+    <p>Click the button below for a surprise!</p>
+
+    <button class="surprise-btn" id="surpriseBtn">
+      🎁 Surprise
+    </button>
+  </div>
+
+  <script>
+    const surpriseBtn = document.getElementById("surpriseBtn");
+
+    surpriseBtn.addEventListener("click", function () {
+      document.getElementById("mainBox").innerHTML = `
+        <h1>🤫 Do you want to know a secret?</h1>
+        <button class="yes-btn" id="yesBtn">Yes</button>
+        <button class="no-btn" id="noBtn">No</button>
+      `;
+
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+
+      yesBtn.addEventListener("click", function () {
+        document.getElementById("mainBox").innerHTML = `
+          <div class="love-text">❤️ I Love You Barlina ❤️</div>
+        `;
+      });
+
+      noBtn.addEventListener("mouseover", function () {
+        const randomX = Math.floor(Math.random() * 200) - 100;
+        const randomY = Math.floor(Math.random() * 200) - 100;
+
+        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      });
+
+      noBtn.addEventListener("click", function () {
+        alert("No option is not available 😄 Please click YES!");
+      });
+    });
+  </script>
+
+</body>
+</html>
+```
